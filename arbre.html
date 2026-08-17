@@ -8,7 +8,7 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 20px auto;
-      max-width: 1100px;
+      max-width: 1200px;
       padding: 0 15px;
       background-color: #fdfdfd;
       color: #333;
@@ -19,38 +19,40 @@
       color: #0066cc;
       font-weight: bold;
     }
-    
+
     /* Conteneur principal de l'arbre */
     .tree-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
+      justify-content: center;
+      gap: 60px; /* Grand espace entre branche Pfeiffer et branche Robillon */
       background: #f8fafc;
-      padding: 30px 10px;
+      padding: 40px 20px;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       margin: 20px 0;
+      overflow-x: auto;
     }
 
-    /* Rangées / Générations */
-    .generation {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-    }
-
-    /* Blocs de famille / sous-groupes */
-    .family-group {
+    /* Grandes branches (Pfeiffer vs Robillon) */
+    .main-branch {
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    /* Rangées / Niveaux */
+    .level {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     .couples-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      position: relative;
     }
 
     /* Cartes individuelles */
@@ -58,40 +60,59 @@
       background: #ffffff;
       border: 2px solid #cbd5e1;
       border-radius: 6px;
-      padding: 10px 15px;
+      padding: 10px 14px;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      min-width: 160px;
+      min-width: 170px;
     }
     .person.main {
       border-color: #2563eb;
       background: #eff6ff;
     }
+    .person.spouse {
+      border-style: dashed;
+      background: #fafafa;
+    }
     .person strong {
       display: block;
       color: #1e293b;
+      font-size: 0.95em;
     }
     .person span {
-      font-size: 0.85em;
+      display: block;
+      margin-top: 4px;
+      font-size: 0.8em;
       color: #64748b;
     }
 
     /* Symbole de mariage */
     .marriage-symbol {
-      font-size: 0.85em;
+      font-size: 0.8em;
       font-weight: bold;
       color: #0f766e;
       background: #ccfbf1;
       padding: 4px 8px;
       border-radius: 12px;
       border: 1px solid #99f6e4;
+      white-space: nowrap;
     }
 
-    /* Connecteurs / Lignes descendantes */
+    /* Lignes de liaison verticaux */
     .line-down {
       width: 2px;
-      height: 25px;
+      height: 35px;
       background-color: #94a3b8;
+    }
+
+    /* Mention explicite de filiation */
+    .child-label {
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      background: #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 4px;
       margin: 4px 0;
     }
   </style>
@@ -111,8 +132,9 @@
 
   <div class="tree-container">
     
-    <div class="generation">
-      <div class="family-group">
+    <div class="main-branch">
+      
+      <div class="level">
         <div class="couples-row">
           <div class="person">
             <strong>Jean Pfeiffer</strong>
@@ -122,10 +144,42 @@
             <strong>Marie Elisabeth Gilbert</strong>
           </div>
         </div>
-        <div class="line-down"></div>
       </div>
 
-      <div class="family-group">
+      <div class="line-down"></div>
+      <span class="child-label">Fils</span>
+      <div class="line-down"></div>
+
+      <div class="level">
+        <div class="couples-row">
+          <div class="person">
+            <strong>François Emile Pfeiffer</strong>
+            <span>Facteur de pianos</span>
+          </div>
+          <div class="marriage-symbol">m. 28/12/1833</div>
+          <div class="person spouse">
+            <strong>Clara Virginie Robillon</strong>
+            <span>Compositrice</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="line-down"></div>
+      <span class="child-label">Fils</span>
+      <div class="line-down"></div>
+
+      <div class="level">
+        <div class="person main">
+          <strong>Jean Georges Pfeiffer</strong>
+          <span>° 12/12/1835 - † 14/02/1908</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-branch">
+      
+      <div class="level">
         <div class="couples-row">
           <div class="person">
             <strong>Claude Robillon</strong>
@@ -135,55 +189,36 @@
             <strong>Marie Victorine Lévis</strong>
           </div>
         </div>
-        <div class="line-down"></div>
-      </div>
-    </div>
-
-    <div class="generation">
-      <div class="family-group">
-        <div class="couples-row">
-          <div class="person">
-            <strong>François Emile Pfeiffer</strong>
-            <span>Facteur de pianos</span>
-          </div>
-          <div class="marriage-symbol">m. 28/12/1833</div>
-          <div class="person">
-            <strong>Clara Virginie Robillon</strong>
-            <span>Compositrice</span>
-          </div>
-        </div>
-        <div class="line-down"></div>
       </div>
 
-      <div class="family-group">
+      <div class="line-down"></div>
+      <span class="child-label">Fils</span>
+      <div class="line-down"></div>
+
+      <div class="level">
         <div class="couples-row">
           <div class="person">
-            <strong>Jacques Auguste Adolphe Robillon</strong>
+            <strong>Jacques A. A. Robillon</strong>
             <span>Avocat</span>
           </div>
           <div class="marriage-symbol">m. 10/07/1838</div>
-          <div class="person">
+          <div class="person spouse">
             <strong>Marie Adrienne Sallior</strong>
           </div>
         </div>
-        <div class="line-down"></div>
-      </div>
-    </div>
-
-    <div class="generation">
-      <div class="family-group">
-        <div class="person main">
-          <strong>Jean Georges Pfeiffer</strong>
-          <span>° 12/12/1835 - † 14/02/1908</span>
-        </div>
       </div>
 
-      <div class="family-group">
+      <div class="line-down"></div>
+      <span class="child-label">Fille</span>
+      <div class="line-down"></div>
+
+      <div class="level">
         <div class="person">
-          <strong>Juliette Marie Claudine Robillon</strong>
+          <strong>Juliette M. C. Robillon</strong>
           <span>° 08/07/1838</span>
         </div>
       </div>
+
     </div>
 
   </div>
