@@ -59,15 +59,59 @@
       %% Style personnalisé pour les mariages
       classDef marriage fill:#ffffff,stroke:#888,stroke-width:1px,font-size:11px;
 
-      %% PARENTS
-      JP["<b>Jean Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 1795 - † 1856"]
-      CP["<b>Clara Nateuil</b><br/><i>Compositrice</i><br/>° 1812 - † 1878"]
-      
-      M_Parents["m. 1834 (Paris)"]:::marriage
-      JP --- M_Parents --- CP
+    %% ==========================================
+      %% 1. GRANDS-PARENTS PATERNELS
+      %% ==========================================
+      GPP_P["<b>Jean Pfeiffer</b><br/><i>?</i><br/>° ? - avant 1833"]
+      GMP_P["<b>Marie Elisabeth Gilbert</b><br/>° ? - avant 1833"]
+      M_GPP["m. ?"]:::marriage
 
+      GPP_P --- M_GPP --- GMP_P
+
+     %% ==========================================
+      %% 2. GRANDS-PARENTS MATERNELS
+      %% ==========================================
+      GPP_P["<b>Claude Robillon</b><br/><i>Directeur d'un théâtre après 1807</i><br/>° ? - avant 1833"]
+      GMP_P["<b>Marie Victorine Lévis</b><br/>° ? - avant 1833"]
+      M_GPP["m. ?"]:::marriage
+
+      GPM_P --- M_GPM --- GMM_P
+
+     %% ==========================================
+      %% 3. Enfants des Grands-Parents Maternels
+      %% ==========================================
+      %% ENFANTS
+    
+      JAAR["<b>Jacques Auguste Adolphe Robillon</b><i>Avocat</i><br/>° 25/06/1810 - ?"]
+      CP["<b>Clara Virginie Pfeiffer (Robillon)</b><br/><i>Compositrice</i><br/>° 13/04/1814 - "]
+    
+      %% FILIATION
+      M_GPM --> CP
+      M_GPM --> JAAR
+
+     %% ==========================================
+      %% 4. Cousine de Georges Pfeiffer
+      %% ==========================================
+      JAAR["<b>Jacques Auguste Adolphe Robillon</b><i>Avocat</i><br/>° 25/06/1810 - ?"]
+      MCous_P["<b>Marie Victorine Lévis</b><br/>° ? - avant 1833"]
+      M_ParentsCousine["m. 10/07/1838"]:::marriage
+    
+      %% ENFANTS
+    
+      JMCR["<b>Juliette Marie Claudine Robillon</b><i>Avocat</i><br/>° 08/07/1838 - ?"]
+    
+      %% FILIATION
+      M_ParentsCousine --> JMCR
+    
+     %% PARENTS
+      EP["<b>François Emile Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 24/02/1795 - "]
+      CP["<b>Clara Virginie Pfeiffer (Robillon)</b><br/><i>Compositrice</i><br/>° 13/04/1814 - "]
+      
+      M_Parents["m. 28/12/1833 (Versailles)"]:::marriage
+      EP --- M_Parents --- CP
+    
       %% ENFANTS & PERSONNAGE PRINCIPAL
-      GP["<b>Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
+      GP["<b>Jean Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
 
       %% FILIATION
       M_Parents --> GP
