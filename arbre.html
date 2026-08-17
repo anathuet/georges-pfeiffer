@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbre généalogique de Georges Pfeiffer</title>
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px auto;
+      max-width: 900px;
+      line-height: 1.6;
+      padding: 0 15px;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #0066cc;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .mermaid {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    ol li {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="chronologie.html">Chronologie</a>
+    <a href="carte.html">Carte</a>
+    <a href="arbre.html">Arbre généalogique</a>
+  </nav>
+
+  <hr>
+
+  <h1>Arbre généalogique de Georges Pfeiffer</h1>
+  <p>Cet arbre retrace la filiation et la famille proche de Georges Pfeiffer.</p>
+
+  <div class="mermaid">
+    graph TD
+      %% Style personnalisé pour les mariages
+      classDef marriage fill:#ffffff,stroke:#888,stroke-width:1px,font-size:11px;
+
+      %% PARENTS
+      JP["<b>Jean Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 1795 - † 1856"]
+      CP["<b>Clara Nateuil</b><br/><i>Compositrice</i><br/>° 1812 - † 1878"]
+      
+      M_Parents["m. 1834 (Paris)"]:::marriage
+      JP --- M_Parents --- CP
+
+      %% ENFANTS & PERSONNAGE PRINCIPAL
+      GP["<b>Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
+
+      %% FILIATION
+      M_Parents --> GP
+  </div>
+
+  <hr>
+
+  <section id="sources">
+    <h2>Sources et références historiques</h2>
+    <ol>
+      <li><b>Georges Pfeiffer (Acte de décès) :</b> Archives de Paris, 10e arrondissement, 14 février 1908, acte n° 712.</li>
+      <li><b>Mariage des parents :</b> Mentionné dans la presse musicale (<i>Le Ménestrel</i>, mai 1834).</li>
+      </ol>
+  </section>
+
+</body>
+</html>
