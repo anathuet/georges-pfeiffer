@@ -7,14 +7,18 @@
   
   <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'neutral',
+      flowchart: { curve: 'basis' }
+    });
   </script>
 
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px auto;
-      max-width: 950px;
+      max-width: 1000px;
       line-height: 1.6;
       padding: 0 15px;
       background-color: #ffffff;
@@ -39,9 +43,6 @@
       display: flex;
       justify-content: center;
     }
-    ol li {
-      margin-bottom: 8px;
-    }
   </style>
 </head>
 <body>
@@ -56,69 +57,68 @@
   <hr>
 
   <h1>Arbre généalogique de Georges Pfeiffer</h1>
-  <p>Cet arbre retrace la filiation et la famille proche de Georges Pfeiffer.</p>
+  <p>Filiation et parenté de la famille Pfeiffer - Robillon.</p>
 
   <div class="mermaid">
     graph TD
-      %% Style personnalisé pour les nœuds de mariage
       classDef marriage fill:#eef2f7,stroke:#94a3b8,stroke-width:1px,font-size:11px,color:#334155;
 
-      %% ==========================================
-      %% 1. GRANDS-PARENTS PATERNELS
-      %% ==========================================
-      GPP_P["<b>Jean Pfeiffer</b><br/>° ? - † av. 1833"]
-      GMP_P["<b>Marie Elisabeth Gilbert</b><br/>° ? - † av. 1833"]
-      M_GPP["m. ?"]:::marriage
+      %% ===================================================
+      %% GENERATION 1 (HAUT)
+      %% ===================================================
+      subgraph G1_Gauche ["Grands-Parents Paternels (Haut Gauche)"]
+        JP["<b>Jean Pfeiffer</b>"]
+        MEG["<b>Marie Elisabeth Gilbert</b>"]
+        M_G1_G["m."]:::marriage
+        JP --- M_G1_G --- MEG
+      end
 
-      GPP_P --- M_GPP --- GMP_P
+      subgraph G1_Droite ["Grands-Parents Maternels (Haut Droite)"]
+        CR["<b>Claude Robillon</b>"]
+        MVL["<b>Marie Victorine Lévis</b>"]
+        M_G1_D["m."]:::marriage
+        CR --- M_G1_D --- MVL
+      end
 
-      %% ==========================================
-      %% 2. GRANDS-PARENTS MATERNELS
-      %% ==========================================
-      GPP_M["<b>Claude Robillon</b><br/><i>Directeur de théâtre</i><br/>° ? - † av. 1833"]
-      GMP_M["<b>Marie Victorine Lévis</b><br/>° ? - † av. 1833"]
-      M_GPM["m. ?"]:::marriage
+      %% ===================================================
+      %% GENERATION 2 (MILIEU)
+      %% ===================================================
+      FEP["<b>François Emile Pfeiffer</b><br/><i>(Facteur de pianos)</i>"]
+      CVR["<b>Clara Virginie Robillon</b><br/><i>(Compositrice)</i>"]
+      JAAR["<b>Jacques Auguste Adolphe Robillon</b><br/><i>(Avocat)</i>"]
+      MAS["<b>Marie Adrienne Sallior</b>"]
 
-      GPP_M --- M_GPM --- GMP_M
+      M_Pfeiffer_Robillon["m. 28/12/1833"]:::marriage
+      M_Robillon_Sallior["m. 10/07/1838"]:::marriage
 
-      %% ==========================================
-      %% 3. GENERATION DES PARENTS & ONCLE
-      %% ==========================================
-      EP["<b>François Emile Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 24/02/1795 - † ?"]
-      CP["<b>Clara Virginie Robillon</b><br/><i>Compositrice</i><br/>° 13/04/1814 - † ?"]
-      M_Parents["m. 28/12/1833 (Versailles)"]:::marriage
+      %% Filiations descendantes depuis la G1
+      M_G1_G --> FEP
+      M_G1_D --> CVR
+      M_G1_D --> JAAR
 
-      EP --- M_Parents --- CP
+      %% Unions de la Génération 2
+      FEP --- M_Pfeiffer_Robillon --- CVR
+      JAAR --- M_Robillon_Sallior --- MAS
 
-      JAAR["<b>Jacques Auguste Adolphe Robillon</b><br/><i>Avocat</i><br/>° 25/06/1810 - † ?"]
-      Epouse_JAAR["Épouse"]
-      M_Oncle["m. 10/07/1838"]:::marriage
+      %% ===================================================
+      %% GENERATION 3 (BAS)
+      %% ===================================================
+      JGP["<b>Jean Georges Pfeiffer</b><br/>° 12/12/1835 - † 14/02/1908"]
+      JMCR["<b>Juliette Marie Claudine Robillon</b><br/>° 08/07/1838"]
 
-      JAAR --- M_Oncle --- Epouse_JAAR
-
-      %% ==========================================
-      %% 4. GENERATION DES ENFANTS & COUSINE
-      %% ==========================================
-      GP["<b>Jean Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
-      JMCR["<b>Juliette Marie Claudine Robillon</b><br/><i>(Cousine)</i><br/>° 08/07/1838 - † ?"]
-
-      %% ==========================================
-      %% FILIATIONS (FLÈCHES DE PARENTÉ)
-      %% ==========================================
-      M_GPP --> EP
-      M_GPM --> CP
-      M_GPM --> JAAR
-      M_Parents --> GP
-      M_Oncle --> JMCR
+      %% Filiations descendantes depuis la G2
+      M_Pfeiffer_Robillon --> JGP
+      M_Robillon_Sallior --> JMCR
   </div>
 
   <hr>
 
   <section id="sources">
-    <h2>Sources et références historiques</h2>
+    <h2>Sources historiques</h2>
     <ol>
-      <li><b>Georges Pfeiffer (Acte de décès) :</b> Archives de Paris, 10e arrondissement, 14 février 1908, acte n° 712 TEST.</li>
-      <li><b>Mariage des parents :</b> Registre de l'état civil de Versailles, 28 décembre 1833.</li>
+      <li><b>Jean Georges Pfeiffer :</b> Acte de décès n° 712, Paris 10e, 14 février 1908.</li>
+      <li><b>Mariage Pfeiffer - Robillon :</b> État civil de Versailles, 28 décembre 1833.</li>
+      <li><b>Mariage Robillon - Sallior :</b> État civil, 10 juillet 1838.</li>
     </ol>
   </section>
 
