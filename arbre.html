@@ -8,7 +8,7 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 20px auto;
-      max-width: 1200px;
+      max-width: 1400px;
       padding: 0 15px;
       background-color: #fdfdfd;
       color: #333;
@@ -23,8 +23,9 @@
     /* Conteneur principal de l'arbre */
     .tree-container {
       display: flex;
-      justify-content: center;
-      gap: 60px; /* Grand espace entre branche Pfeiffer et branche Robillon */
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
       background: #f8fafc;
       padding: 40px 20px;
       border: 1px solid #e2e8f0;
@@ -33,26 +34,25 @@
       overflow-x: auto;
     }
 
-    /* Grandes branches (Pfeiffer vs Robillon) */
-    .main-branch {
+    /* Lignes de génération */
+    .generation {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Bloc de groupe / famille */
+    .family-column {
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    /* Rangées / Niveaux */
-    .level {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
     }
 
     .couples-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      position: relative;
     }
 
     /* Cartes individuelles */
@@ -68,6 +68,8 @@
     .person.main {
       border-color: #2563eb;
       background: #eff6ff;
+      border-width: 3px;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.15);
     }
     .person.spouse {
       border-style: dashed;
@@ -97,14 +99,14 @@
       white-space: nowrap;
     }
 
-    /* Lignes de liaison verticaux */
+    /* Connecteurs / Lignes verticaux */
     .line-down {
       width: 2px;
-      height: 35px;
+      height: 25px;
       background-color: #94a3b8;
     }
 
-    /* Mention explicite de filiation */
+    /* Etiquette de filiation */
     .child-label {
       font-size: 0.75em;
       text-transform: uppercase;
@@ -113,7 +115,21 @@
       background: #e2e8f0;
       padding: 2px 8px;
       border-radius: 4px;
-      margin: 4px 0;
+      margin: 2px 0;
+    }
+
+    /* Reliure horizontale mariage parents (Génération 2 vers Georges) */
+    .parents-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .connector-line-horizontal {
+      height: 2px;
+      background-color: #2563eb;
+      width: 50%;
+      margin-top: -2px;
     }
   </style>
 </head>
@@ -132,9 +148,8 @@
 
   <div class="tree-container">
     
-    <div class="main-branch">
-      
-      <div class="level">
+    <div class="generation">
+      <div class="family-column">
         <div class="couples-row">
           <div class="person">
             <strong>Jean Pfeiffer</strong>
@@ -144,42 +159,12 @@
             <strong>Marie Elisabeth Gilbert</strong>
           </div>
         </div>
+        <div class="line-down"></div>
+        <span class="child-label">Fils</span>
+        <div class="line-down"></div>
       </div>
 
-      <div class="line-down"></div>
-      <span class="child-label">Fils</span>
-      <div class="line-down"></div>
-
-      <div class="level">
-        <div class="couples-row">
-          <div class="person">
-            <strong>François Emile Pfeiffer</strong>
-            <span>Facteur de pianos</span>
-          </div>
-          <div class="marriage-symbol">m. 28/12/1833</div>
-          <div class="person spouse">
-            <strong>Clara Virginie Robillon</strong>
-            <span>Compositrice</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="line-down"></div>
-      <span class="child-label">Fils</span>
-      <div class="line-down"></div>
-
-      <div class="level">
-        <div class="person main">
-          <strong>Jean Georges Pfeiffer</strong>
-          <span>° 12/12/1835 - † 14/02/1908</span>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="main-branch">
-      
-      <div class="level">
+      <div class="family-column">
         <div class="couples-row">
           <div class="person">
             <strong>Claude Robillon</strong>
@@ -189,13 +174,32 @@
             <strong>Marie Victorine Lévis</strong>
           </div>
         </div>
+        <div class="line-down"></div>
+        <span class="child-label">Enfants</span>
+        <div class="line-down"></div>
+      </div>
+    </div>
+
+    <div class="generation">
+      <div class="family-column">
+        <div class="person">
+          <strong>François Emile Pfeiffer</strong>
+          <span>Facteur de pianos</span>
+        </div>
       </div>
 
-      <div class="line-down"></div>
-      <span class="child-label">Fils</span>
-      <div class="line-down"></div>
+      <div class="family-column" style="justify-content: center;">
+        <div class="marriage-symbol">m. 28/12/1833</div>
+      </div>
 
-      <div class="level">
+      <div class="family-column">
+        <div class="person">
+          <strong>Clara Virginie Robillon</strong>
+          <span>Compositrice</span>
+        </div>
+      </div>
+
+      <div class="family-column">
         <div class="couples-row">
           <div class="person">
             <strong>Jacques A. A. Robillon</strong>
@@ -206,19 +210,28 @@
             <strong>Marie Adrienne Sallior</strong>
           </div>
         </div>
-      </div>
-
-      <div class="line-down"></div>
-      <span class="child-label">Fille</span>
-      <div class="line-down"></div>
-
-      <div class="level">
+        <div class="line-down"></div>
+        <span class="child-label">Fille</span>
+        <div class="line-down"></div>
+        
         <div class="person">
           <strong>Juliette M. C. Robillon</strong>
           <span>° 08/07/1838</span>
         </div>
       </div>
+    </div>
 
+    <div class="parents-connector">
+      <div class="line-down" style="height: 20px; background-color: #2563eb;"></div>
+      <span class="child-label" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe;">Fils principal</span>
+      <div class="line-down" style="height: 20px; background-color: #2563eb;"></div>
+    </div>
+
+    <div class="generation" style="justify-content: center;">
+      <div class="person main">
+        <strong>Jean Georges Pfeiffer</strong>
+        <span>° 12/12/1835 - † 14/02/1908</span>
+      </div>
     </div>
 
   </div>
