@@ -59,62 +59,53 @@
       %% Style personnalisé pour les mariages
       classDef marriage fill:#ffffff,stroke:#888,stroke-width:1px,font-size:11px;
 
-    %% ==========================================
+      %% ==========================================
       %% 1. GRANDS-PARENTS PATERNELS
       %% ==========================================
-      GPP_P["<b>Jean Pfeiffer</b><br/><i>?</i><br/>° ? - avant 1833"]
-      GMP_P["<b>Marie Elisabeth Gilbert</b><br/>° ? - avant 1833"]
+      GPP_P["<b>Jean Pfeiffer</b><br/>° ? - † av. 1833"]
+      GMP_P["<b>Marie Elisabeth Gilbert</b><br/>° ? - † av. 1833"]
       M_GPP["m. ?"]:::marriage
 
       GPP_P --- M_GPP --- GMP_P
 
-     %% ==========================================
+      %% ==========================================
       %% 2. GRANDS-PARENTS MATERNELS
       %% ==========================================
-      GPP_P["<b>Claude Robillon</b><br/><i>Directeur d'un théâtre après 1807</i><br/>° ? - avant 1833"]
-      GMP_P["<b>Marie Victorine Lévis</b><br/>° ? - avant 1833"]
-      M_GPP["m. ?"]:::marriage
+      GPP_M["<b>Claude Robillon</b><br/><i>Directeur de théâtre</i><br/>° ? - † av. 1833"]
+      GMP_M["<b>Marie Victorine Lévis</b><br/>° ? - † av. 1833"]
+      M_GPM["m. ?"]:::marriage
 
-      GPM_P --- M_GPM --- GMM_P
+      GPP_M --- M_GPM --- GMP_M
 
-     %% ==========================================
-      %% 3. Enfants des Grands-Parents Maternels
       %% ==========================================
-      %% ENFANTS
-    
-      JAAR["<b>Jacques Auguste Adolphe Robillon</b><i>Avocat</i><br/>° 25/06/1810 - ?"]
-      CP["<b>Clara Virginie Pfeiffer (Robillon)</b><br/><i>Compositrice</i><br/>° 13/04/1814 - "]
-    
-      %% FILIATION
+      %% 3. GENERATION DES PARENTS & ONCLE
+      %% ==========================================
+      EP["<b>François Emile Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 24/02/1795 - † ?"]
+      CP["<b>Clara Virginie Robillon</b><br/><i>Compositrice</i><br/>° 13/04/1814 - † ?"]
+      M_Parents["m. 28/12/1833 (Versailles)"]:::marriage
+
+      EP --- M_Parents --- CP
+
+      JAAR["<b>Jacques Auguste Adolphe Robillon</b><br/><i>Avocat</i><br/>° 25/06/1810 - † ?"]
+      Epouse_JAAR["Épouse"]
+      M_Oncle["m. 10/07/1838"]:::marriage
+
+      JAAR --- M_Oncle --- Epouse_JAAR
+
+      %% ==========================================
+      %% 4. GENERATION DES ENFANTS & COUSINE
+      %% ==========================================
+      GP["<b>Jean Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
+      JMCR["<b>Juliette Marie Claudine Robillon</b><br/><i>(Cousine)</i><br/>° 08/07/1838 - † ?"]
+
+      %% ==========================================
+      %% FILIATIONS (FLÈCHES DE PARENTÉ)
+      %% ==========================================
+      M_GPP --> EP
       M_GPM --> CP
       M_GPM --> JAAR
-
-     %% ==========================================
-      %% 4. Cousine de Georges Pfeiffer
-      %% ==========================================
-      JAAR["<b>Jacques Auguste Adolphe Robillon</b><i>Avocat</i><br/>° 25/06/1810 - ?"]
-      MCous_P["<b>Marie Victorine Lévis</b><br/>° ? - avant 1833"]
-      M_ParentsCousine["m. 10/07/1838"]:::marriage
-    
-      %% ENFANTS
-    
-      JMCR["<b>Juliette Marie Claudine Robillon</b><i>Avocat</i><br/>° 08/07/1838 - ?"]
-    
-      %% FILIATION
-      M_ParentsCousine --> JMCR
-    
-     %% PARENTS
-      EP["<b>François Emile Pfeiffer</b><br/><i>Facteur de pianos</i><br/>° 24/02/1795 - "]
-      CP["<b>Clara Virginie Pfeiffer (Robillon)</b><br/><i>Compositrice</i><br/>° 13/04/1814 - "]
-      
-      M_Parents["m. 28/12/1833 (Versailles)"]:::marriage
-      EP --- M_Parents --- CP
-    
-      %% ENFANTS & PERSONNAGE PRINCIPAL
-      GP["<b>Jean Georges Pfeiffer</b><br/>° 12 déc. 1835 - † 14 fév. 1908"]
-
-      %% FILIATION
       M_Parents --> GP
+      M_Oncle --> JMCR
   </div>
 
   <hr>
@@ -123,8 +114,8 @@
     <h2>Sources et références historiques</h2>
     <ol>
       <li><b>Georges Pfeiffer (Acte de décès) :</b> Archives de Paris, 10e arrondissement, 14 février 1908, acte n° 712.</li>
-      <li><b>Mariage des parents :</b> Mentionné dans la presse musicale (<i>Le Ménestrel</i>, mai 1834).</li>
-      </ol>
+      <li><b>Mariage des parents :</b> Registre de l'état civil de Versailles, 28 décembre 1833.</li>
+    </ol>
   </section>
 
 </body>
