@@ -4,24 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arbre généalogique de Georges Pfeiffer</title>
-  
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ 
-      startOnLoad: true, 
-      theme: 'neutral',
-      flowchart: { curve: 'basis' }
-    });
-  </script>
-
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 20px auto;
-      max-width: 1000px;
-      line-height: 1.6;
+      max-width: 1100px;
       padding: 0 15px;
-      background-color: #ffffff;
+      background-color: #fdfdfd;
       color: #333;
     }
     nav a {
@@ -30,18 +19,80 @@
       color: #0066cc;
       font-weight: bold;
     }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .mermaid {
-      background: #f9f9f9;
-      padding: 25px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      overflow-x: auto;
-      margin: 20px 0;
+    
+    /* Conteneur principal de l'arbre */
+    .tree-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      background: #f8fafc;
+      padding: 30px 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    /* Rangées / Générations */
+    .generation {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    /* Blocs de famille / sous-groupes */
+    .family-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .couples-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Cartes individuelles */
+    .person {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 10px 15px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      min-width: 160px;
+    }
+    .person.main {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .person strong {
+      display: block;
+      color: #1e293b;
+    }
+    .person span {
+      font-size: 0.85em;
+      color: #64748b;
+    }
+
+    /* Symbole de mariage */
+    .marriage-symbol {
+      font-size: 0.85em;
+      font-weight: bold;
+      color: #0f766e;
+      background: #ccfbf1;
+      padding: 4px 8px;
+      border-radius: 12px;
+      border: 1px solid #99f6e4;
+    }
+
+    /* Connecteurs / Lignes descendantes */
+    .line-down {
+      width: 2px;
+      height: 25px;
+      background-color: #94a3b8;
+      margin: 4px 0;
     }
   </style>
 </head>
@@ -56,59 +107,85 @@
 
   <hr>
 
-  <h1>Arbre généalogique de Georges Pfeiffer</h1>
-  <p>Filiation et parenté de la famille Pfeiffer - Robillon.</p>
+  <h1>Arbre généalogique de la famille Pfeiffer - Robillon</h1>
 
-  <div class="mermaid">
-    graph TD
-      classDef marriage fill:#eef2f7,stroke:#94a3b8,stroke-width:1px,font-size:11px,color:#334155;
+  <div class="tree-container">
+    
+    <div class="generation">
+      <div class="family-group">
+        <div class="couples-row">
+          <div class="person">
+            <strong>Jean Pfeiffer</strong>
+          </div>
+          <div class="marriage-symbol">m.</div>
+          <div class="person">
+            <strong>Marie Elisabeth Gilbert</strong>
+          </div>
+        </div>
+        <div class="line-down"></div>
+      </div>
 
-      %% ===================================================
-      %% GENERATION 1 (HAUT)
-      %% ===================================================
-      subgraph G1_Gauche ["Grands-Parents Paternels (Haut Gauche)"]
-        JP["<b>Jean Pfeiffer</b>"]
-        MEG["<b>Marie Elisabeth Gilbert</b>"]
-        M_G1_G["m."]:::marriage
-        JP --- M_G1_G --- MEG
-      end
+      <div class="family-group">
+        <div class="couples-row">
+          <div class="person">
+            <strong>Claude Robillon</strong>
+          </div>
+          <div class="marriage-symbol">m.</div>
+          <div class="person">
+            <strong>Marie Victorine Lévis</strong>
+          </div>
+        </div>
+        <div class="line-down"></div>
+      </div>
+    </div>
 
-      subgraph G1_Droite ["Grands-Parents Maternels (Haut Droite)"]
-        CR["<b>Claude Robillon</b>"]
-        MVL["<b>Marie Victorine Lévis</b>"]
-        M_G1_D["m."]:::marriage
-        CR --- M_G1_D --- MVL
-      end
+    <div class="generation">
+      <div class="family-group">
+        <div class="couples-row">
+          <div class="person">
+            <strong>François Emile Pfeiffer</strong>
+            <span>Facteur de pianos</span>
+          </div>
+          <div class="marriage-symbol">m. 28/12/1833</div>
+          <div class="person">
+            <strong>Clara Virginie Robillon</strong>
+            <span>Compositrice</span>
+          </div>
+        </div>
+        <div class="line-down"></div>
+      </div>
 
-      %% ===================================================
-      %% GENERATION 2 (MILIEU)
-      %% ===================================================
-      FEP["<b>François Emile Pfeiffer</b><br/><i>(Facteur de pianos)</i>"]
-      CVR["<b>Clara Virginie Robillon</b><br/><i>(Compositrice)</i>"]
-      JAAR["<b>Jacques Auguste Adolphe Robillon</b><br/><i>(Avocat)</i>"]
-      MAS["<b>Marie Adrienne Sallior</b>"]
+      <div class="family-group">
+        <div class="couples-row">
+          <div class="person">
+            <strong>Jacques Auguste Adolphe Robillon</strong>
+            <span>Avocat</span>
+          </div>
+          <div class="marriage-symbol">m. 10/07/1838</div>
+          <div class="person">
+            <strong>Marie Adrienne Sallior</strong>
+          </div>
+        </div>
+        <div class="line-down"></div>
+      </div>
+    </div>
 
-      M_Pfeiffer_Robillon["m. 28/12/1833"]:::marriage
-      M_Robillon_Sallior["m. 10/07/1838"]:::marriage
+    <div class="generation">
+      <div class="family-group">
+        <div class="person main">
+          <strong>Jean Georges Pfeiffer</strong>
+          <span>° 12/12/1835 - † 14/02/1908</span>
+        </div>
+      </div>
 
-      %% Filiations descendantes depuis la G1
-      M_G1_G --> FEP
-      M_G1_D --> CVR
-      M_G1_D --> JAAR
+      <div class="family-group">
+        <div class="person">
+          <strong>Juliette Marie Claudine Robillon</strong>
+          <span>° 08/07/1838</span>
+        </div>
+      </div>
+    </div>
 
-      %% Unions de la Génération 2
-      FEP --- M_Pfeiffer_Robillon --- CVR
-      JAAR --- M_Robillon_Sallior --- MAS
-
-      %% ===================================================
-      %% GENERATION 3 (BAS)
-      %% ===================================================
-      JGP["<b>Jean Georges Pfeiffer</b><br/>° 12/12/1835 - † 14/02/1908"]
-      JMCR["<b>Juliette Marie Claudine Robillon</b><br/>° 08/07/1838"]
-
-      %% Filiations descendantes depuis la G2
-      M_Pfeiffer_Robillon --> JGP
-      M_Robillon_Sallior --> JMCR
   </div>
 
   <hr>
