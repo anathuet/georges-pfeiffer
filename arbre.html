@@ -14,9 +14,11 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px auto;
-      max-width: 900px;
+      max-width: 950px;
       line-height: 1.6;
       padding: 0 15px;
+      background-color: #ffffff;
+      color: #333;
     }
     nav a {
       margin-right: 15px;
@@ -29,11 +31,13 @@
     }
     .mermaid {
       background: #f9f9f9;
-      padding: 20px;
+      padding: 25px;
       border-radius: 8px;
       border: 1px solid #ddd;
       overflow-x: auto;
       margin: 20px 0;
+      display: flex;
+      justify-content: center;
     }
     ol li {
       margin-bottom: 8px;
@@ -56,8 +60,8 @@
 
   <div class="mermaid">
     graph TD
-      %% Style personnalisé pour les mariages
-      classDef marriage fill:#ffffff,stroke:#888,stroke-width:1px,font-size:11px;
+      %% Style personnalisé pour les nœuds de mariage
+      classDef marriage fill:#eef2f7,stroke:#94a3b8,stroke-width:1px,font-size:11px,color:#334155;
 
       %% ==========================================
       %% 1. GRANDS-PARENTS PATERNELS
